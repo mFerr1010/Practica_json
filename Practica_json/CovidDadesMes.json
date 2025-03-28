@@ -1,0 +1,98 @@
+[
+    {
+        "month": "Desembre",
+        "positive": 522459627,
+        "negative": 1688751783,
+        "death": 9269261,
+        "hospitalized": 16262903,
+        "totalTestResults": 7061253472
+    },
+    {
+        "month": "Novembre",
+        "positive": 336941092,
+        "negative": 1374782959,
+        "death": 7206395,
+        "hospitalized": 12283586,
+        "totalTestResults": 5221247701
+    },
+    {
+        "month": "Octubre",
+        "positive": 248879799,
+        "negative": 1161661222,
+        "death": 6528270,
+        "hospitalized": 10414102,
+        "totalTestResults": 4088807843
+    },
+    {
+        "month": "Setembre",
+        "positive": 197441612,
+        "negative": 912266785,
+        "death": 5648154,
+        "hospitalized": 8799572,
+        "totalTestResults": 2995636199
+    },
+    {
+        "month": "Agost",
+        "positive": 165003108,
+        "negative": 734434580,
+        "death": 5012258,
+        "hospitalized": 7723933,
+        "totalTestResults": 2290408313
+    },
+    {
+        "month": "Juliol",
+        "positive": 110431975,
+        "negative": 500378780,
+        "death": 4071555,
+        "hospitalized": 5535849,
+        "totalTestResults": 1480435354
+    },
+    {
+        "month": "Juny",
+        "positive": 64577037,
+        "negative": 279954937,
+        "death": 3356899,
+        "hospitalized": 4038095,
+        "totalTestResults": 787256525
+    },
+    {
+        "month": "Maig",
+        "positive": 45273840,
+        "negative": 131331398,
+        "death": 2587987,
+        "hospitalized": 2561872,
+        "totalTestResults": 373676108
+    },
+    {
+        "month": "Abril",
+        "positive": 19610160,
+        "negative": 43084576,
+        "death": 941069,
+        "hospitalized": 784533,
+        "totalTestResults": 111984593
+    },
+    {
+        "month": "Març",
+        "positive": 1206666,
+        "negative": 2795093,
+        "death": 20726,
+        "hospitalized": 32221,
+        "totalTestResults": 8655827
+    },
+    {
+        "month": "Febrer",
+        "positive": 202,
+        "negative": 0,
+        "death": 13,
+        "hospitalized": 0,
+        "totalTestResults": 20179
+    },
+    {
+        "month": "Gener",
+        "positive": 24,
+        "negative": 0,
+        "death": 0,
+        "hospitalized": 0,
+        "totalTestResults": 33
+    }
+]

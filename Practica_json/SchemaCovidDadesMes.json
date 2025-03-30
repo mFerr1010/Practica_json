@@ -1,0 +1,38 @@
+{
+    "$ref": "#/definitions/POST",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+      "POST": {
+        "additionalProperties": false,
+        "properties": {
+          "death": {
+            "type": "number"
+          },
+          "hospitalized": {
+            "type": "number"
+          },
+          "month": {
+            "type": "string"
+          },
+          "negative": {
+            "type": "number"
+          },
+          "positive": {
+            "type": "number"
+          },
+          "totalTestResults": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "month",
+          "positive",
+          "negative",
+          "death",
+          "hospitalized",
+          "totalTestResults"
+        ],
+        "type": "object"
+      }
+    }
+  }

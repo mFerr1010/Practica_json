@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Covid Dades Mes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+      vertical-align: middle;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    .expandable {
+      cursor: pointer;
+      background-color: #f9f9f9;
+      border: none;
+      width: 100%;
+      text-align: center;
+      padding: 10px;
+      font-size: 1em;
+      transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    }
+    .expandable:hover {
+      transform: scale(1.05); /* Aumenta el tamaño del botón ligeramente */
+      background-color: #e0e0e0; /* Cambia el color de fondo al pasar el cursor */
+    }
+    .extra-info {
+      display: none;
+      margin-top: 5px;
+      font-size: 0.9em;
+      color: #555;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Covid Dades per Mes</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Mes i Dades</th>
+      </tr>
+    </thead>
+    <tbody id="data-table">
+      <!-- Los datos se cargarán aquí dinámicamente -->
+    </tbody>
+  </table>
+
+  <script>
+    // Ruta del archivo JSON
+    const jsonFile = 'CovidDadesMes.json';
+
+    // Referencia al cuerpo de la tabla
+    const tableBody = document.getElementById('data-table');
+
+    // Cargar y mostrar los datos del archivo JSON
+    fetch(jsonFile)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Error al cargar el archivo JSON');
+        }
+        return response.json();
+      })
+      .then(data => {
+        data.forEach(record => {
+          // Crear una fila para cada registro
+          const row = document.createElement('tr');
+
+          // Crear una celda con todos los datos del mes
+          const cell = document.createElement('td');
+          const button = document.createElement('button');
+          button.className = 'expandable';
+
+          // Incluir todos los datos en el botón
+          button.innerHTML = `
+            <strong>Mes:</strong> ${record.month}<br>
+            <strong>Positius:</strong> ${record.positive.toLocaleString()}<br>
+            <strong>Negatius:</strong> ${record.negative.toLocaleString()}<br>
+            <strong>Defuncions:</strong> ${record.death.toLocaleString()}<br>
+            <strong>Hospitalitzats:</strong> ${record.hospitalized.toLocaleString()}<br>
+            <strong>Resultats Totals de Test:</strong> ${record.totalTestResults.toLocaleString()}
+          `;
+
+          // Crear el contenedor para la información adicional (de otro archivo)
+          const extraInfo = document.createElement('div');
+          extraInfo.className = 'extra-info';
+          extraInfo.innerHTML = `
+            <p><strong>Datos adicionales:</strong> Aquí se pueden añadir datos de otro archivo.</p>
+          `;
+
+          // Agregar evento para expandir/colapsar la información adicional
+          button.addEventListener('click', () => {
+            extraInfo.style.display = extraInfo.style.display === 'none' ? 'block' : 'none';
+          });
+
+          // Agregar el botón y la información adicional a la celda
+          cell.appendChild(button);
+          cell.appendChild(extraInfo);
+
+          // Agregar la celda a la fila
+          row.appendChild(cell);
+
+          // Agregar la fila a la tabla
+          tableBody.appendChild(row);
+        });
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  </script>
+</body>
+</html>

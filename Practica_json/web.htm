@@ -4,53 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Covid Dades Mes</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-    h1 {
-      text-align: center;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 10px;
-      text-align: center;
-      vertical-align: middle;
-    }
-    th {
-      background-color: #f4f4f4;
-    }
-    tr:nth-child(even) {
-      background-color: #f9f9f9;
-    }
-    .expandable {
-      cursor: pointer;
-      background-color: #f9f9f9;
-      border: none;
-      width: 100%;
-      text-align: center;
-      padding: 10px;
-      font-size: 1em;
-      transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
-    }
-    .expandable:hover {
-      transform: scale(1.05); /* Aumenta el tamaño del botón ligeramente */
-      background-color: #e0e0e0; /* Cambia el color de fondo al pasar el cursor */
-    }
-    .extra-info {
-      display: none;
-      margin-top: 5px;
-      font-size: 0.9em;
-      color: #555;
-      text-align: center;
-    }
-  </style>
+  <link rel="stylesheet" href="web.css">
 </head>
 <body>
   <h1>Covid Dades per Mes</h1>
@@ -66,17 +20,20 @@
   </table>
 
   <script>
-    // Ruta del archivo JSON
+    // Ruta del archivo JSON principal
     const jsonFile = 'CovidDadesMes.json';
+
+    // Ruta del archivo JSON adicional
+    const extraJsonFile = 'CovidDades.json';
 
     // Referencia al cuerpo de la tabla
     const tableBody = document.getElementById('data-table');
 
-    // Cargar y mostrar los datos del archivo JSON
+    // Cargar y mostrar los datos del archivo JSON principal
     fetch(jsonFile)
       .then(response => {
         if (!response.ok) {
-          throw new Error('Error al cargar el archivo JSON');
+          throw new Error('Error al cargar el archivo JSON principal');
         }
         return response.json();
       })
@@ -103,9 +60,50 @@
           // Crear el contenedor para la información adicional (de otro archivo)
           const extraInfo = document.createElement('div');
           extraInfo.className = 'extra-info';
-          extraInfo.innerHTML = `
-            <p><strong>Datos adicionales:</strong> Aquí se pueden añadir datos de otro archivo.</p>
-          `;
+
+          // Cargar los datos adicionales desde el segundo archivo JSON
+          fetch(extraJsonFile)
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('Error al cargar el archivo JSON adicional');
+              }
+              return response.json();
+            })
+            .then(extraData => {
+              // Filtrar los datos para el mes actual (usando "month" que coincide)
+              const monthData = extraData.filter(item => item.month === record.month); // Filtra por el mes
+
+              if (monthData.length > 0) {
+                monthData.forEach(dayRecord => {
+                  // Crear una fila para cada día dentro del mes
+                  const dayRow = document.createElement('tr');
+                  const dayCell = document.createElement('td');
+                  dayCell.colSpan = 1;  // Ocupa toda la fila
+
+                  // Información del día
+                  const dayInfo = document.createElement('div');
+                  dayInfo.className = 'day-info';
+                  dayInfo.innerHTML = `
+                    <strong>Fecha:</strong> ${dayRecord.date}<br>
+                    <strong>Estados:</strong> ${dayRecord.states}<br>
+                    <strong>Positivos:</strong> ${dayRecord.positive ?? 'N/A'}<br>
+                    <strong>Negativos:</strong> ${dayRecord.negative ?? 'N/A'}<br>
+                    <strong>Pendientes:</strong> ${dayRecord.pending ?? 'N/A'}<br>
+                    <strong>Hospitalizados Hoy:</strong> ${dayRecord.hospitalizedCurrently ?? 'N/A'}<br>
+                    <strong>Muertes:</strong> ${dayRecord.death ?? 'N/A'}<br>
+                    <strong>Total de Tests Fets:</strong> ${dayRecord.totalTestResults.toLocaleString()}
+                  `;
+                  dayCell.appendChild(dayInfo);
+                  dayRow.appendChild(dayCell);
+                  extraInfo.appendChild(dayRow);  // Agregar la fila del día al contenedor extraInfo
+                });
+              } else {
+                extraInfo.innerHTML = '<p>No se encontraron datos adicionales para este mes.</p>';
+              }
+            })
+            .catch(error => {
+              console.error('Error al cargar los datos adicionales:', error);
+            });
 
           // Agregar evento para expandir/colapsar la información adicional
           button.addEventListener('click', () => {
@@ -124,7 +122,7 @@
         });
       })
       .catch(error => {
-        console.error('Error:', error);
+        console.error('Error al cargar el archivo JSON principal:', error);
       });
   </script>
 </body>

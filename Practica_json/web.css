@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.expandable {
+    cursor: pointer;
+    background-color: #f9f9f9;
+    border: none;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    font-size: 1em;
+    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.expandable:hover {
+    transform: scale(1.05); /* Aumenta el tamaño del botón ligeramente */
+    background-color: #e0e0e0; /* Cambia el color de fondo al pasar el cursor */
+}
+
+.extra-info {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: #555;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.day-info {
+    margin-top: 10px;
+    font-size: 0.85em;
+    color: #777;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    width: 200px; /* Ancho fijo para las casillas */
+    box-sizing: border-box;
+}
+
+

@@ -3,52 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Covid Dades Mes</title>
+  <title>Covid Dades 2020</title>
   <link rel="stylesheet" href="web.css">
 </head>
 <body>
-  <h1>Covid Dades per Mes</h1>
+  <h1>Covid Dades 2020</h1>
   <table>
     <thead>
       <tr>
         <th>Mes i Dades</th>
       </tr>
     </thead>
-    <tbody id="data-table">
-      <!-- Los datos se cargarán aquí dinámicamente -->
+    <tbody id="datos-tabla">
     </tbody>
   </table>
 
   <script>
-    // Ruta del archivo JSON principal
-    const jsonFile = 'CovidDadesMes.json';
+    /*En esta página web muestra los datos del Covid-19 durante el 2020 de manera que se muestren separados por meses, cada una en una casilla, y que este funcione como un boton,
+      el cual, al pulsarlo se extienda la casilla y muestre los datos separados por dias correspondientes a cada mes. Se utilizan dos archivos JSON, uno en donde guarda los datos
+      de cada mes, y otro de cada dia de cada mes.*/
 
-    // Ruta del archivo JSON adicional
-    const extraJsonFile = 'CovidDades.json';
+
+    // Asignación de los archivos JSON
+    const JSONMes = 'CovidDadesMes.json';
+    const JSONDias = 'CovidDades.json';
 
     // Referencia al cuerpo de la tabla
-    const tableBody = document.getElementById('data-table');
+    const tableBody = document.getElementById('datos-tabla');
 
-    // Cargar y mostrar los datos del archivo JSON principal
-    fetch(jsonFile)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Error al cargar el archivo JSON principal');
-        }
-        return response.json();
-      })
-      .then(data => {
-        data.forEach(record => {
-          // Crear una fila para cada registro
-          const row = document.createElement('tr');
+    // Cargar archivo JSON del mes
+    fetch(JSONMes)
+    // Convertirlo en un objeto JavaScript
+    .then(response => response.json())
+    // Recorrer los datos del mes
+      .then(dataMes => {
+        dataMes.forEach(record => {
 
-          // Crear una celda con todos los datos del mes
-          const cell = document.createElement('td');
-          const button = document.createElement('button');
-          button.className = 'expandable';
+          // Crear una fila para cada registro del archivo JSON
+          const fila = document.createElement('tr');
+          // Crear una celda con todos los datos de cada mes
+          const celda = document.createElement('td');
+          // Crear el botón expandible
+          const boton = document.createElement('button');
+          // Asignarle un nombre
+          boton.className = 'expandible';
 
-          // Incluir todos los datos en el botón
-          button.innerHTML = `
+          // Insertar datos dentro del botón
+          boton.innerHTML = 
+          // Estructura de los datos
+          // El "toLocaleString()" permite agregar las comas de miles en los números 
+          `
             <strong>Mes:</strong> ${record.month}<br>
             <strong>Positius:</strong> ${record.positive.toLocaleString()}<br>
             <strong>Negatius:</strong> ${record.negative.toLocaleString()}<br>
@@ -57,73 +61,61 @@
             <strong>Total de Tests Fets:</strong> ${record.totalTestResults.toLocaleString()}
           `;
 
-          // Crear el contenedor para la información adicional (de otro archivo)
-          const extraInfo = document.createElement('div');
-          extraInfo.className = 'extra-info';
+          // Crear el contenedor para añadir los datos de los días
+          const datosDia = document.createElement('div');
+          datosDia.className = 'datos-dia';
 
-          // Cargar los datos adicionales desde el segundo archivo JSON
-          fetch(extraJsonFile)
-            .then(response => {
-              if (!response.ok) {
-                throw new Error('Error al cargar el archivo JSON adicional');
-              }
-              return response.json();
-            })
-            .then(extraData => {
-              // Filtrar los datos para el mes actual (usando "month" que coincide)
-              const monthData = extraData.filter(item => item.month === record.month); // Filtra por el mes
-
-              if (monthData.length > 0) {
-                monthData.forEach(dayRecord => {
-                  // Crear una fila para cada día dentro del mes
-                  const dayRow = document.createElement('tr');
-                  const dayCell = document.createElement('td');
-                  dayCell.colSpan = 1;  // Ocupa toda la fila
+          // Cargar el archivo JSON de los días
+          fetch(JSONDias)
+          .then(response => response.json())
+            .then(dataDia => {
+              // Filtrar los datos de los días para que cada uno sea correspondiente al mes de su fecha (en este caso utiliza el nombre del mes "month" porque coincide en los dos archivos JSON)
+              const mesDia = dataDia.filter(item => item.month === record.month);
+                mesDia.forEach(dayRecord => {
+                  
+                  // Crear una fila para cada dia
+                  const filaDia = document.createElement('tr');
+                  // Crear una celda para cada dia
+                  const celdaDia = document.createElement('td');
 
                   // Información del día
-                  const dayInfo = document.createElement('div');
-                  dayInfo.className = 'day-info';
-                  dayInfo.innerHTML = `
+                  const infoDia = document.createElement('div');
+                  infoDia.className = 'info-dia';
+                  infoDia.innerHTML = `
                     <strong>Fecha:</strong> ${dayRecord.date}<br>
                     <strong>Estados:</strong> ${dayRecord.states}<br>
-                    <strong>Positivos:</strong> ${dayRecord.positive ?? 'N/A'}<br>
-                    <strong>Negativos:</strong> ${dayRecord.negative ?? 'N/A'}<br>
-                    <strong>Pendientes:</strong> ${dayRecord.pending ?? 'N/A'}<br>
-                    <strong>Hospitalizados Hoy:</strong> ${dayRecord.hospitalizedCurrently ?? 'N/A'}<br>
-                    <strong>Muertes:</strong> ${dayRecord.death ?? 'N/A'}<br>
+                    <strong>Positivos:</strong> ${dayRecord.positive.toLocaleString()}<br>
+                    <strong>Negativos:</strong> ${dayRecord.negative.toLocaleString()}<br>
+                    <strong>Pendientes:</strong> ${dayRecord.pending.toLocaleString()}<br>
+                    <strong>Hospitalizados Hoy:</strong> ${dayRecord.hospitalizedCurrently.toLocaleString()}<br>
+                    <strong>Muertes:</strong> ${dayRecord.death.toLocaleString()}<br>
                     <strong>Total de Tests Fets:</strong> ${dayRecord.totalTestResults.toLocaleString()}
                   `;
-                  dayCell.appendChild(dayInfo);
-                  dayRow.appendChild(dayCell);
-                  extraInfo.appendChild(dayRow);  // Agregar la fila del día al contenedor extraInfo
+                  // Introducir los datos dentro de la celda
+                  celdaDia.appendChild(infoDia);
+                  // Añadir las celdas en cada fila
+                  filaDia.appendChild(celdaDia);
+                  //Añadir filas dentro de las celdas
+                  datosDia.appendChild(filaDia);
                 });
-              } else {
-                extraInfo.innerHTML = '<p>No se encontraron datos adicionales para este mes.</p>';
-              }
             })
-            .catch(error => {
-              console.error('Error al cargar los datos adicionales:', error);
-            });
 
-          // Agregar evento para expandir/colapsar la información adicional
-          button.addEventListener('click', () => {
-            extraInfo.style.display = extraInfo.style.display === 'none' ? 'block' : 'none';
+          // Agregar la funcion del boton para expandir/encoger la casilla de los datos de los dias
+          boton.addEventListener('click', () => {
+            datosDia.style.display = datosDia.style.display === 'none' ? 'block' : 'none';
           });
 
-          // Agregar el botón y la información adicional a la celda
-          cell.appendChild(button);
-          cell.appendChild(extraInfo);
+          // Agregar el botón y los datos de los dias a la celda
+          celda.appendChild(boton);
+          celda.appendChild(datosDia);
 
           // Agregar la celda a la fila
-          row.appendChild(cell);
+          fila.appendChild(celda);
 
-          // Agregar la fila a la tabla
-          tableBody.appendChild(row);
+          // Añadir la fila a la tabla
+          tableBody.appendChild(fila);
         });
       })
-      .catch(error => {
-        console.error('Error al cargar el archivo JSON principal:', error);
-      });
   </script>
 </body>
 </html>

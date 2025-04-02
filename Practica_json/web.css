@@ -1,5 +1,4 @@
 body {
-    font-family: Arial, sans-serif;
     margin: 20px;
 }
 
@@ -28,7 +27,7 @@ tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-.expandable {
+.expandible {
     cursor: pointer;
     background-color: #f9f9f9;
     border: none;
@@ -39,12 +38,12 @@ tr:nth-child(even) {
     transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
-.expandable:hover {
+.expandible:hover {
     transform: scale(1.05); /* Aumenta el tamaño del botón ligeramente */
     background-color: #e0e0e0; /* Cambia el color de fondo al pasar el cursor */
 }
 
-.extra-info {
+.datos-dia {
     display: flex;
     flex-wrap: wrap;
     margin-top: 5px;
@@ -54,7 +53,7 @@ tr:nth-child(even) {
     justify-content: space-between;
 }
 
-.day-info {
+.info-dia {
     margin-top: 10px;
     font-size: 0.85em;
     color: #777;

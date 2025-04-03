@@ -1,5 +1,5 @@
 export type POST = {
-    date: number;
+    date: string;
     states: number;
     positive: number;
     negative: number;
@@ -8,4 +8,5 @@ export type POST = {
     death: number;
     hospitalized: number;
     totalTestResults: number;
+    month: string;
 };

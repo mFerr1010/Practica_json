@@ -1,12 +1,10 @@
 export type POST = {
-    date: string;
-    states: number;
+    month: string;
     positive: number;
     negative: number;
-    pending: number;
-    hospitalizedCurrently: number;
     death: number;
     hospitalized: number;
     totalTestResults: number;
-    month: string;
 };
+
+export { MesData };

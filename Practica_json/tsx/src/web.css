@@ -1,35 +1,40 @@
 body {
     margin: 20px;
+    background-color: #e8f5e9; /* Color de fondo verde pastel */
+    font-family: Arial, sans-serif;
 }
 
 h1 {
     text-align: center;
+    color: #2c6e49; /* Verde más oscuro para el encabezado */
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    background-color: #f1f8f3; /* Fondo de la tabla en verde muy claro */
 }
 
 th, td {
-    border: 1px solid #ccc;
+    border: 1px solid #b2dfdb; /* Bordes en verde pastel más suave */
     padding: 10px;
     text-align: center;
     vertical-align: middle;
 }
 
 th {
-    background-color: #f4f4f4;
+    background-color: #a5d6a7; /* Fondo de las cabeceras en verde pastel */
+    color: #ffffff; /* Texto blanco para las cabeceras */
 }
 
 tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #dcedc8; /* Fila par con un verde claro */
 }
 
 .expandible {
     cursor: pointer;
-    background-color: #f9f9f9;
+    background-color: #dcedc8; /* Fondo de botón verde pastel */
     border: none;
     width: 100%;
     text-align: center;
@@ -40,7 +45,7 @@ tr:nth-child(even) {
 
 .expandible:hover {
     transform: scale(1.05); /* Aumenta el tamaño del botón ligeramente */
-    background-color: #e0e0e0; /* Cambia el color de fondo al pasar el cursor */
+    background-color: #a5d6a7; /* Cambia el color de fondo al pasar el cursor */
 }
 
 .datos-dia {
@@ -48,7 +53,7 @@ tr:nth-child(even) {
     flex-wrap: wrap;
     margin-top: 5px;
     font-size: 0.9em;
-    color: #555;
+    color: #2c6e49; /* Texto verde oscuro */
     text-align: center;
     justify-content: space-between;
 }
@@ -56,14 +61,12 @@ tr:nth-child(even) {
 .info-dia {
     margin-top: 10px;
     font-size: 0.85em;
-    color: #777;
+    color: #4caf50; /* Texto verde para las casillas */
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #b2dfdb; /* Bordes verdes pastel */
     margin-bottom: 10px;
     border-radius: 5px;
-    background-color: #f9f9f9;
+    background-color: #e8f5e9; /* Fondo verde muy claro */
     width: 200px; /* Ancho fijo para las casillas */
     box-sizing: border-box;
 }
-
-

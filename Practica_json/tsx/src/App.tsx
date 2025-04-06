@@ -1,3 +1,5 @@
+//https://github.com/mFerr1010/Practica_json.git
+
 //Si al clonar el repositorio salen errores, habria que descargar de nuevo el ajv dentro de la carpeta de tsx, no se porque pasa eso
 
 /*La pagina web consiste en mostrar los datos del Covid-19 en Estados Unidos durante el 2020, de manera que en cada casilla este los datos de cada mes, y que 

@@ -1,6 +1,8 @@
+//Si al clonar el repositorio salen errores, habria que descargar de nuevo el ajv dentro de la carpeta de tsx, no se porque pasa eso
+
 /*La pagina web consiste en mostrar los datos del Covid-19 en Estados Unidos durante el 2020, de manera que en cada casilla este los datos de cada mes, y que 
 estos tambien funcionen como un boton, el cual al pulsarlo, se extienda la cailla y salgan los datos de cada dia del mes*/
-//Si al clonar el repositorio salen errores, habria que descargar de nuevo el ajv dentro de la carpeta de tsx, no se porque pasa eso
+
 
 import React, { useEffect, useState } from 'react';
 import './web.css';

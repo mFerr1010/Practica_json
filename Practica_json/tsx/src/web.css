@@ -1,40 +1,40 @@
 body {
     margin: 20px;
-    background-color: #e8f5e9; /* Color de fondo verde pastel */
+    background-color: #e8f5e9;
     font-family: Arial, sans-serif;
 }
 
 h1 {
     text-align: center;
-    color: #2c6e49; /* Verde más oscuro para el encabezado */
+    color: #2c6e49;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    background-color: #f1f8f3; /* Fondo de la tabla en verde muy claro */
+    background-color: #f1f8f3;
 }
 
 th, td {
-    border: 1px solid #b2dfdb; /* Bordes en verde pastel más suave */
+    border: 1px solid #b2dfdb;
     padding: 10px;
     text-align: center;
     vertical-align: middle;
 }
 
 th {
-    background-color: #a5d6a7; /* Fondo de las cabeceras en verde pastel */
-    color: #ffffff; /* Texto blanco para las cabeceras */
+    background-color: #a5d6a7;
+    color: #ffffff;
 }
 
 tr:nth-child(even) {
-    background-color: #dcedc8; /* Fila par con un verde claro */
+    background-color: #dcedc8;
 }
 
 .expandible {
     cursor: pointer;
-    background-color: #dcedc8; /* Fondo de botón verde pastel */
+    background-color: #dcedc8;
     border: none;
     width: 100%;
     text-align: center;
@@ -44,8 +44,8 @@ tr:nth-child(even) {
 }
 
 .expandible:hover {
-    transform: scale(1.05); /* Aumenta el tamaño del botón ligeramente */
-    background-color: #a5d6a7; /* Cambia el color de fondo al pasar el cursor */
+    transform: scale(1.05);
+    background-color: #a5d6a7;
 }
 
 .datos-dia {
@@ -53,7 +53,7 @@ tr:nth-child(even) {
     flex-wrap: wrap;
     margin-top: 5px;
     font-size: 0.9em;
-    color: #2c6e49; /* Texto verde oscuro */
+    color: #2c6e49;
     text-align: center;
     justify-content: space-between;
 }
@@ -61,12 +61,12 @@ tr:nth-child(even) {
 .info-dia {
     margin-top: 10px;
     font-size: 0.85em;
-    color: #4caf50; /* Texto verde para las casillas */
+    color: #4caf50;
     padding: 10px;
-    border: 1px solid #b2dfdb; /* Bordes verdes pastel */
+    border: 1px solid #b2dfdb;
     margin-bottom: 10px;
     border-radius: 5px;
-    background-color: #e8f5e9; /* Fondo verde muy claro */
-    width: 200px; /* Ancho fijo para las casillas */
+    background-color: #e8f5e9;
+    width: 200px;
     box-sizing: border-box;
 }
